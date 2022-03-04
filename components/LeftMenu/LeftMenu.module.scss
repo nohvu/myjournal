@@ -1,8 +1,7 @@
 .menu {
-  position: fixed;
-  left: 15px;
-  width: 200px;
-  top: 70px;
+  position: sticky;
+  width: 200px !important;
+  top: 80px;
 
   ul {
     list-style: none;
@@ -10,7 +9,10 @@
     margin: 0;
 
     li {
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      a {
+        text-decoration: none;
+      }
       button {
         color: black !important;
         width: 100%;

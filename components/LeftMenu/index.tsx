@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 import styles from './LeftMenu.module.scss';
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined';
@@ -11,18 +11,22 @@ export const LeftMenu: React.FC = () => {
     <div className={styles.menu}>
       <ul>
         <li>
-          <Button>
-            <WhatshotOutlinedIcon />
-            Лента
-          </Button>
+          <Link href="/">
+            <Button>
+              <WhatshotOutlinedIcon />
+              Лента
+            </Button>
+          </Link>
           <Button>
             <SmsOutlinedIcon />
             Сообщения
           </Button>
-          <Button>
-            <TrendingUpOutlinedIcon />
-            Рейтинг TJ
-          </Button>
+          <Link href="/rating">
+            <Button>
+              <TrendingUpOutlinedIcon />
+              Рейтинг TJ
+            </Button>
+          </Link>
           <Button>
             <FormatListBulletedOutlinedIcon />
             Подписки

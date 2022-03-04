@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['leonardo.osnova.io'],
+    domains: ['leonardo.osnova.io', 'iconape.com'],
     formats: ['image/avif', 'image/webp'],
   },
 };
