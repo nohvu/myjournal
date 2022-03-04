@@ -1,6 +1,6 @@
-import { Paper, Button, Avatar, Typography, Link } from '@mui/material';
+import { Paper, Button, Avatar, Typography } from '@mui/material';
 import { SettingsOutlined, TextsmsOutlined } from '@mui/icons-material';
-
+import Link from 'next/link';
 import { Post } from '../../components/Post';
 import { MainLayout } from '../../layouts/MainLayout';
 
@@ -21,11 +21,13 @@ export default function Profile() {
           </div>
           <div>
             <Link href="/profile/settings">
-              <Button
-                style={{ height: 42, minWidth: 45, width: 45, marginRight: 10 }}
-                variant="contained">
-                <SettingsOutlined />
-              </Button>
+              <a>
+                <Button
+                  style={{ height: 42, minWidth: 45, width: 45, marginRight: 10 }}
+                  variant="contained">
+                  <SettingsOutlined />
+                </Button>
+              </a>
             </Link>
             <Button style={{ height: 42 }} variant="contained" color="primary">
               <TextsmsOutlined className="mr-10" />

@@ -14,7 +14,13 @@ export const theme = createTheme({
         },
       },
     },
-
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          boxShadow: 'none',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -33,7 +39,7 @@ export const theme = createTheme({
           //color: 'black',
           boxShadow:
             '0 1px 1px rgb(0 0 0 / 10%), 0 2px 5px rgb(0 0 0 / 5%), 0 -1px 0 rgb(0 0 0 / 5%), -1px 0 0 rgb(0 0 0 / 10%), 1px 0 0 rgb(0 0 0 / 10%)',
-          ':hover': {
+          '&:hover': {
             backgroundColor: 'white',
             boxShadow:
               '0 1px 1px rgb(0 0 0 / 15%), 0 4px 7px rgb(0 0 0 / 10%), 0 -1px 0 rgb(0 0 0 / 10%), -1px 0 0 rgb(0 0 0 / 15%), 1px 0 0 rgb(0 0 0 / 15%)',

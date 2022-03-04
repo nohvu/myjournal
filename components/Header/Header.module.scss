@@ -66,3 +66,17 @@
   margin-right: 6px;
   border-radius: 20% !important;
 }
+.loginButton {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 10px;
+  cursor: pointer;
+  &:hover {
+    color: orange;
+  }
+  svg {
+    margin-right: 10px;
+  }
+}
