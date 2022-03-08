@@ -1,32 +1,55 @@
 import React from 'react';
+import { setCookie } from 'nookies';
 import { Button } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { RegisterFormSchema } from '../../../utils/validations';
 import { FormField } from '../../FormField';
-
+import { UserApi } from '../../../utils/api';
+import { CreateUserDto } from '../../../utils/api/types';
+import Alert from '@mui/material/Alert';
 interface RegisterFormProps {
   onOpenLogin: () => void;
 }
-interface IFormInputs {
-  email: string;
-  password: string;
-}
+
 export const RegisterForm: React.FC<RegisterFormProps> = ({ onOpenLogin }) => {
+  const [errorMessage, setErrorMessage] = React.useState('');
   const form = useForm({
-    mode: 'onSubmit',
+    mode: 'onChange',
     resolver: yupResolver(RegisterFormSchema),
   });
-  const onSubmit = (data: IFormInputs) => console.log(data);
+
+  const onSubmit = async (dto: CreateUserDto) => {
+    try {
+      const data = await UserApi.register(dto);
+      setCookie(null, 'authToken', data.token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
+      setErrorMessage('');
+    } catch (error) {
+      console.warn('Ошибка при регистрации', error);
+      if (error.response) {
+        setErrorMessage(error.response.data.message);
+      }
+    }
+  };
+
   return (
     <div>
       <FormProvider {...form}>
         <FormField name="fullName" label="Имя и Фамилия" type="text" />
         <FormField name="email" label="Эл. почта" type="email" />
         <FormField name="password" label="Пароль" type="password" />
+        {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="d-flex justify-between">
-            <Button type="submit" className="mt-20" color="primary" variant="contained">
+            <Button
+              disabled={!form.formState.isValid || form.formState.isSubmitting}
+              type="submit"
+              className="mt-20"
+              color="primary"
+              variant="contained">
               Зарегистрироваться
             </Button>
             <Button onClick={onOpenLogin} className="mt-20" color="primary" variant="text">
