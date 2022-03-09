@@ -12,8 +12,14 @@ import {
 
 import { MainLayout } from '../layouts/MainLayout';
 import { FollowButton } from '../components/FollowButton';
+import { ResponseUser } from '../utils/api/types';
+import { NextPage } from 'next';
 
-export default function Rating() {
+interface RatingPageProps {
+  users: ResponseUser[];
+}
+
+const Rating: NextPage<RatingPageProps> = ({ users }) => {
   return (
     <MainLayout>
       <Paper className="pl-20 pt-20 pr-20 mb-20" elevation={0}>
@@ -41,19 +47,23 @@ export default function Rating() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell component="th" scope="row">
-                <span className="mr-15">id</span>
-                fullName
-              </TableCell>
-              <TableCell align="right">commentsCount</TableCell>
-              <TableCell align="right">
-                <FollowButton />
-              </TableCell>
-            </TableRow>
+            {users.map((user) => {
+              <TableRow key={user.id}>
+                <TableCell component="th" scope="row">
+                  <span className="mr-15">{user.id}</span>
+                  {user.fullName}
+                </TableCell>
+                <TableCell align="right">commentsCount</TableCell>
+                <TableCell align="right">
+                  <FollowButton />
+                </TableCell>
+              </TableRow>;
+            })}
           </TableBody>
         </Table>
       </Paper>
     </MainLayout>
   );
-}
+};
+
+export default Rating;

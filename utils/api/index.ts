@@ -15,7 +15,16 @@ export const UserApi = {
   },
 
   async login(dto: LoginDto) {
-    const { data } = await instance.post('/auth/login', dto);
+    const { data } = await instance.post<CreateUserDto, { data: ResponseUser }>('/auth/login', dto);
+    return data;
+  },
+
+  async getMe(token: string) {
+    const { data } = await instance.get<ResponseUser>('/users/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return data;
   },
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import { Paper, Button, IconButton } from '@mui/material';
 import styles from './Header.module.scss';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import Avatar from '@mui/material/Avatar';
@@ -12,8 +11,11 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import Image from 'next/image';
 import Link from 'next/link';
 import { AuthDialog } from '../AuthDialog';
+import { useAppSelector } from '../../redux/hooks';
+import { selectUserData } from '../../redux/slices/user';
 
 export const Header: React.FC = () => {
+  const userData = useAppSelector(selectUserData);
   const [authVisible, setAuthVisible] = React.useState(false);
 
   const openAuthDialog = () => {
@@ -61,20 +63,23 @@ export const Header: React.FC = () => {
         <IconButton>
           <NotificationsNoneOutlinedIcon />
         </IconButton>
-        {/* <Link href="/profile/1">
-          <a className="d-flex align-center">
-            <Avatar
-              className={styles.avatar}
-              alt="UserAvatar"
-              src="https://static.apostrophe.ua/uploads/image/d73832dd01e4279b0e9149566b652cc1.jpg"
-            />
-            <ExpandMoreOutlinedIcon />
-          </a>
-        </Link> */}
-        <div className={styles.loginButton} onClick={openAuthDialog}>
-          <AccountCircleOutlinedIcon />
-          Войти
-        </div>
+        {userData ? (
+          <Link href="/profile/1">
+            <a className="d-flex align-center">
+              <Avatar
+                className={styles.avatar}
+                alt="UserAvatar"
+                src="https://static.apostrophe.ua/uploads/image/d73832dd01e4279b0e9149566b652cc1.jpg"
+              />
+              <ExpandMoreOutlinedIcon />
+            </a>
+          </Link>
+        ) : (
+          <div className={styles.loginButton} onClick={openAuthDialog}>
+            <AccountCircleOutlinedIcon />
+            Войти
+          </div>
+        )}
       </div>
 
       <AuthDialog isOpen={authVisible} onClose={closeAuthDialog} />
