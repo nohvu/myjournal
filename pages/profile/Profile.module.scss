@@ -1,0 +1,19 @@
+.settings {
+  height: 42px;
+  min-width: 45px;
+  width: 45px;
+  margin-right: 10px;
+  color: black;
+}
+
+.message {
+  height: 42px;
+  color: black;
+  background-color: rgb(231, 222, 245);
+
+  &:hover {
+    background-color: #fff;
+    border-color: darken(rgb(246, 242, 252), 15%);
+    box-shadow: 0 0 0 3px rgba(231, 129, 252, 0.12);
+  }
+}

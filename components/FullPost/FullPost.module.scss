@@ -17,7 +17,7 @@
 
 .text {
   a {
-    color: #07A287;
+    color: #07a287;
     text-decoration: underline;
   }
 }
@@ -43,5 +43,11 @@
     font-size: 16px;
     color: #2ea83a;
     font-weight: 500;
+  }
+}
+
+.butActions {
+  button {
+    color: black;
   }
 }

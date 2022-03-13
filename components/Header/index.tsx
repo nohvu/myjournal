@@ -26,6 +26,12 @@ export const Header: React.FC = () => {
     setAuthVisible(false);
   };
 
+  React.useEffect(() => {
+    if (authVisible && userData) {
+      setAuthVisible(false);
+    }
+  }, [authVisible, userData]);
+
   return (
     <Paper classes={{ root: styles.root }} elevation={0}>
       <div className="d-flex align-center">
@@ -36,10 +42,10 @@ export const Header: React.FC = () => {
           <a>
             <Image
               className={styles.logo}
-              height="55"
-              width="50"
-              src="https://iconape.com/wp-content/files/kn/281457/svg/281457.svg"
-              alt="Tjournal Logo"
+              height="40"
+              width="40"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqm8GYwEuo_S6sr2t3iI2_vs2fKZ7Dpb5hEa5JZJ7zTRe1UJ9WQpo6ZRy8N07V8pzaqTQ&usqp=CAU"
+              alt="Myjournal Logo"
             />
           </a>
         </Link>

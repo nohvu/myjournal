@@ -1,8 +1,12 @@
 import React from 'react';
-import EditorJS from '@editorjs/editorjs';
+import EditorJS, { OutputData } from '@editorjs/editorjs';
 import ImageTool from '@editorjs/image';
 
-export const Editor: React.FC = () => {
+interface EditorProps {
+  onChange: (blocks: OutputData['blocks']) => void;
+}
+
+export const Editor: React.FC<EditorProps> = ({ onChange }) => {
   React.useEffect(() => {
     const editor = new EditorJS({
       holder: 'editor',
@@ -11,6 +15,10 @@ export const Editor: React.FC = () => {
         image: {
           class: ImageTool,
         },
+      },
+      async onChange() {
+        const { blocks } = await editor.save();
+        onChange(blocks);
       },
     });
 

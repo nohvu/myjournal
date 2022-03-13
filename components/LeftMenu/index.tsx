@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 const menu = [
   {
-    text: 'Лента',
+    text: 'Популярное',
     icon: <WhatshotOutlinedIcon />,
     path: '/',
   },
@@ -21,7 +21,7 @@ const menu = [
     path: '/messages',
   },
   {
-    text: 'Рейтинг TJ',
+    text: 'Общий рейтинг',
     icon: <TrendingUpOutlinedIcon />,
     path: '/rating',
   },

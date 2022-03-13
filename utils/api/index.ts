@@ -1,30 +1,26 @@
+import Cookies, { parseCookies } from 'nookies';
+import { GetServerSidePropsContext, NextPageContext } from 'next';
+import { UserApi } from './user';
 import axios from 'axios';
-import { CreateUserDto, LoginDto, ResponseUser } from './types';
+import { PostApi } from './post';
 
-const instance = axios.create({
-  baseURL: 'http://localhost:5000/',
-});
+export type ApiReturnType = {
+  user: ReturnType<typeof UserApi>;
+  post: ReturnType<typeof PostApi>;
+};
 
-export const UserApi = {
-  async register(dto: CreateUserDto) {
-    const { data } = await instance.post<CreateUserDto, { data: ResponseUser }>(
-      '/auth/register',
-      dto,
-    );
-    return data;
-  },
+export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiReturnType => {
+  const cookies = ctx ? Cookies.get(ctx) : parseCookies();
+  const token = cookies.authToken;
 
-  async login(dto: LoginDto) {
-    const { data } = await instance.post<CreateUserDto, { data: ResponseUser }>('/auth/login', dto);
-    return data;
-  },
-
-  async getMe(token: string) {
-    const { data } = await instance.get<ResponseUser>('/users/me', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return data;
-  },
+  const instance = axios.create({
+    baseURL: 'http://localhost:5000',
+    headers: {
+      Authorization: `Bearer ` + token,
+    },
+  });
+  return {
+    user: UserApi(instance),
+    post: PostApi(instance),
+  };
 };

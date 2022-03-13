@@ -14,7 +14,7 @@ export const CommentItem: React.FC<CommentItemProps> = ({ user, text, post }) =>
   return (
     <div className={styles.commentItem}>
       <div className={styles.userInfo}>
-        <Avatar style={{ marginRight: 10 }}>{user.avatarUrl}</Avatar>
+        <Avatar className={styles.avatar} src={user.avatarUrl} />
         <Link href={`/profile/${user.id}`}>
           <a>
             <b>{user.fullName}</b>

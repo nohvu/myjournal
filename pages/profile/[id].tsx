@@ -3,6 +3,7 @@ import { SettingsOutlined, TextsmsOutlined } from '@mui/icons-material';
 import Link from 'next/link';
 import { Post } from '../../components/Post';
 import { MainLayout } from '../../layouts/MainLayout';
+import styles from './Profile.module.scss';
 
 export default function Profile() {
   return (
@@ -22,14 +23,12 @@ export default function Profile() {
           <div>
             <Link href="/profile/settings">
               <a>
-                <Button
-                  style={{ height: 42, minWidth: 45, width: 45, marginRight: 10 }}
-                  variant="contained">
+                <Button className={styles.settings} variant="contained">
                   <SettingsOutlined />
                 </Button>
               </a>
             </Link>
-            <Button style={{ height: 42 }} variant="contained" color="primary">
+            <Button className={styles.message} variant="contained" color="primary">
               <TextsmsOutlined className="mr-10" />
               Написать
             </Button>
