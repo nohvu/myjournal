@@ -10,6 +10,7 @@ import { CreateUserDto } from '../../../utils/api/types';
 import Alert from '@mui/material/Alert';
 import { setUserData } from '../../../redux/slices/user';
 import { useAppDispatch } from '../../../redux/hooks';
+import styles from '../AuthDialog.module.scss';
 interface RegisterFormProps {
   onOpenLogin: () => void;
 }
@@ -51,7 +52,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onOpenLogin }) => {
             <Button
               disabled={!form.formState.isValid || form.formState.isSubmitting}
               type="submit"
-              className="mt-20"
+              className={styles.formBtn}
               color="primary"
               variant="contained">
               Зарегистрироваться

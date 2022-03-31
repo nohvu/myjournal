@@ -9,10 +9,7 @@ export const FollowButton: React.FC = () => {
   const [followed, setFollowed] = React.useState(false);
 
   return (
-    <Button
-      onClick={() => setFollowed(!followed)}
-      variant="contained"
-      style={{ minWidth: 30, width: 35, height: 30 }}>
+    <Button onClick={() => setFollowed(!followed)} variant="contained" className={styles.followBtn}>
       {!followed ? <AddIcon /> : <CheckIcon style={{ fontSize: 20, color: '#2ea83a' }} />}
     </Button>
   );

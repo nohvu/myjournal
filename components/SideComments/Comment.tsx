@@ -3,18 +3,19 @@ import styles from './SideComments.module.scss';
 import Link from 'next/link';
 //import { PostItem, ResponseUser } from '../../utils/api/types';
 import { Avatar } from '@mui/material';
+import { PostItem, ResponseUser } from '../../utils/api/types';
 
 interface CommentItemProps {
-  user: { id: number; fullName: string; avatarUrl: string };
+  user: ResponseUser;
   text: string;
-  post: { id: number; title: string };
+  post: PostItem;
 }
 
-export const CommentItem: React.FC<CommentItemProps> = ({ user, text, post }) => {
+export const Comment: React.FC<CommentItemProps> = ({ user, text, post }) => {
   return (
     <div className={styles.commentItem}>
       <div className={styles.userInfo}>
-        <Avatar className={styles.avatar} src={user.avatarUrl} />
+        <Avatar className={styles.avatar} src={user.fullName[0]} />
         <Link href={`/profile/${user.id}`}>
           <a>
             <b>{user.fullName}</b>

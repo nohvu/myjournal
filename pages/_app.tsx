@@ -27,7 +27,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-
         <Header />
         <Component {...pageProps} />
       </ThemeProvider>

@@ -51,6 +51,7 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
       </div>
       <Button
         disabled={isLoading || !blocks.length || !title}
+        className={styles.btn}
         onClick={onAddPost}
         variant="contained"
         color="primary">

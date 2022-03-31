@@ -1,5 +1,6 @@
 import { Button, Divider, Paper, TextField, Typography } from '@mui/material';
 import { MainLayout } from '../../layouts/MainLayout';
+import styles from './Profile.module.scss';
 
 export default function Settings() {
   return (
@@ -26,7 +27,7 @@ export default function Settings() {
           />
           <TextField size="small" label="Пароль" variant="outlined" fullWidth required />
           <Divider className="mt-30 mb-20" />
-          <Button color="primary" variant="contained">
+          <Button className={styles.saveBtn} color="primary" variant="contained">
             Сохранить изменения
           </Button>
         </form>

@@ -31,6 +31,19 @@
     }
   }
 }
+
+.formBtn {
+  margin-top: 20px;
+  color: white;
+  background-color: #4683d9;
+
+  &:hover {
+    background-color: #4683d9;
+    border-color: darken(rgb(246, 242, 252), 15%);
+    box-shadow: 0 0 0 3px rgba(231, 129, 252, 0.12);
+    transform: scale(1.02);
+  }
+}
 .backTitle {
   display: flex;
   align-items: center;

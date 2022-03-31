@@ -5,13 +5,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginFormSchema } from '../../../utils/validations';
 import { FormField } from '../../FormField';
 import { LoginDto } from '../../../utils/api/types';
-import { UserApi } from '../../../utils/api/user';
 import { setCookie } from 'nookies';
 import Alert from '@mui/material/Alert';
 import { useAppDispatch } from '../../../redux/hooks';
 import { setUserData } from '../../../redux/slices/user';
 import { Api } from '../../../utils/api';
-
+import styles from '../AuthDialog.module.scss';
 interface LoginFormProps {
   onOpenRegister: () => void;
 }
@@ -54,7 +53,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onOpenRegister }) => {
             <Button
               disabled={!form.formState.isValid || form.formState.isSubmitting}
               type="submit"
-              className="mt-20"
+              className={styles.formBtn}
               color="primary"
               variant="contained">
               Войти
